@@ -13,16 +13,11 @@ namespace Server.Controllers
     {
         public ActionResult Index()
         {
-            for(int i = 0; i < 5; i++)
-            {
-                var context = GlobalHost.ConnectionManager.GetHubContext<SignalRHub>();
-                context.Clients.All.Send("Admin", "stop the chat");
-                int milliseconds = 5000;
-                Thread.Sleep(milliseconds);
-            }
+            var context = GlobalHost.ConnectionManager.GetHubContext<SignalRHub>();
+
+            context.Clients.All.broadcastMessage("adafsa","sadfasdf");
 
             ViewBag.Title = "Home Page";
-
             return View();
         }
     }
