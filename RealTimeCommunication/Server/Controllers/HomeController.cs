@@ -15,7 +15,7 @@ namespace Server.Controllers
         {
             var context = GlobalHost.ConnectionManager.GetHubContext<SignalRHub>();
 
-            context.Clients.All.broadcastMessage("adafsa","sadfasdf");
+            context.Clients.All.broadcastMessage("This is dummy data");
 
             ViewBag.Title = "Home Page";
             return View();
