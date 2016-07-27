@@ -2,37 +2,15 @@
 <html>
 <head>
     <title>HRMS</title>
-    <style type="text/css">
-        .container {
-            background-color: #99CCFF;
-            border: thick solid #808080;
-            padding: 20px;
-            margin: 20px;
-        }
-    </style>
-</head>
-<body>
-    <!--<div class="container">
-        <input type="text" id="message" />
-        <input type="button" id="sendmessage" value="Send" />
-        <input type="hidden" id="displayname" />
-        <ul id="discussion"></ul>
-    </div>-->
-
-    <div ng-app="hrms">
-        <header>
-            <a ui-sref="leaveRequest">Leave Request</a>
-            <a ui-sref="leaves">Leaves</a>
-        </header>
-        <div ui-view>
-            <div ng-include=""></div>
-        </div>
-    </div>
-
     <!---------------Libraries----------------->
     <script src="../js/lib/jquery-1.10.2.min.js"></script>
     <script src="../js/lib/jquery.signalR-2.2.1.min.js"></script>
     <script src="http://localhost:62643/signalr/hubs"></script>
+
+    <!-------------------Bootstrap-------------------->
+    <script src="js/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <link href="js/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="js/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" />
 
     <script src="js/angular.min.js"></script>
     <script src="js/angular-route.min.js"></script>
@@ -42,20 +20,49 @@
     <!-----------------------------Controllers--------------------->
     <script src="controller/leaveRequestController.js"></script>
     <script src="controller/leavesController.js"></script>
+    <script src="controller/loginController.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">HRMS</a>
+            </div>
+            <!--<div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>-->
+        </div>
+    </nav>
 
+    <div class="container-fluid" ng-app="hrms" style="margin-top:5%;">
+        <div ui-view>
+            <div ng-include=""></div>
+        </div>    
 
-    <!--Add script to update the page and send messages.-->
-    <script type="text/javascript">
-        $(function () {
-            // Declare a proxy to reference the hub.
-            var hub = $.connection.signalRHub;
-            // Create a function that the hub can call to broadcast messages.
-            hub.client.broadcastMessage = function (message) {
-                alert(message);
-            };
-            $.connection.hub.url = 'http://localhost:62643/signalr';
-            $.connection.hub.start();                       
-        });
-    </script>
+    </div>
 </body>
 </html>
+
+<script type="text/javascript">
+    $(function () {
+        // Declare a proxy to reference the hub.
+        hub = $.connection.signalRHub;
+        // Create a function that the hub can call to broadcast messages.
+        hub.client.broadcastMessage = function (message) {
+            alert(message);
+        };
+        $.connection.hub.url = 'http://localhost:62643/signalr';
+        $.connection.hub.start().done(function () { });
+    });
+
+</script>

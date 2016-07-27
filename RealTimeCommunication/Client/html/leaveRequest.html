@@ -1,3 +1,28 @@
-﻿<div>
-    This is leave request
+﻿<div ng-controller="leaveRequestController">
+    <h3>Leave Requests</h3>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Reason</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="leave in leaves">
+                <td>{{leave.Name}}</td>
+                <td>{{leave.StartDate}}</td>
+                <td>{{leave.EndDate}}</td>
+                <td>{{leave.Reason}}</td>
+                <td>{{leave.Status}}</td>
+                <td>
+                    <input type="button" value="Approve"/>
+                    <input type="button" value="Reject" />
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>

@@ -1,4 +1,37 @@
-﻿<div>
+﻿<div ng-controller="leavesController">
+    <form class="form-inline">
+        <div class="form-group">
+            <label for="exampleInputName2">Start Date</label>
+            <input type="date" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail2">End Date</label>
+            <input type="date" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail2">Reason</label>
+            <input type="text" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-default btn-primary">Submit</button>
+    </form>
+    <h3>Leaves</h3>
 
-    This is leaves
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Reason</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="leave in leaves">
+                <td>{{leave.StartDate}}</td>
+                <td>{{leave.EndDate}}</td>
+                <td>{{leave.Reason}}</td>
+                <td>{{leave.Status}}</td>
+            </tr>
+        </tbody>
+    </table>
 </div>

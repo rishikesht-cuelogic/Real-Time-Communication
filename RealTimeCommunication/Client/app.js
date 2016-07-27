@@ -1,7 +1,7 @@
 ﻿var hrms = angular.module('hrms', ['ui.router']);
 
 hrms.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
-    $urlRouterProvider.otherwise('/leaves');
+    $urlRouterProvider.otherwise('/login');
 
     $stateProvider
     .state('leaveRequest', {
@@ -12,6 +12,10 @@ hrms.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $
         url: '/leaves',
         templateUrl: 'html/leaves.html'
     })
+     .state('login', {
+         url: '/login',
+         templateUrl: 'html/login.html'
+     })
 }]);
 
 
