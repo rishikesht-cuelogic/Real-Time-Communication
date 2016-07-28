@@ -19,8 +19,8 @@
                 <td>{{leave.Reason}}</td>
                 <td>{{leave.Status}}</td>
                 <td>
-                    <input type="button" value="Approve"/>
-                    <input type="button" value="Reject" />
+                    <input type="button" value="Approve" ng-click="approve(leave.UserId)"/>
+                    <input type="button" value="Reject" ng-click="reject(leave.UserId)"/>
                 </td>
             </tr>
         </tbody>

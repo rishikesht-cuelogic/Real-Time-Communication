@@ -24,7 +24,12 @@
             data: {UserId:userid,Status:'Approved'}
         }).then(function successCallback(response) {
             if (response.data)
+            {
                 alert("Approved");
+                reload();
+            }
+                
+
         }, function errorCallback(response) {
         });
     }
@@ -35,8 +40,11 @@
             url: 'http://localhost:62643/api/leave/action',
             data: { UserId: userid, Status: 'Rejected' }
         }).then(function successCallback(response) {
-            if (response.data)
+            if (response.data) {
+                reload();
                 alert("Rejected");
+            }
+                
         }, function errorCallback(response) {
         });
     }
