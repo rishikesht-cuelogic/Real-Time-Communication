@@ -58,8 +58,8 @@
         // Declare a proxy to reference the hub.
         hub = $.connection.signalRHub;
         // Create a function that the hub can call to broadcast messages.
-        hub.client.broadcastMessage = function (message) {
-            alert(message);
+        hub.client.broadcastMessage = function (data) {
+            alert('Inside Index page:'+data);
         };
         $.connection.hub.url = 'http://localhost:62643/signalr';
         $.connection.hub.start().done(function () { });

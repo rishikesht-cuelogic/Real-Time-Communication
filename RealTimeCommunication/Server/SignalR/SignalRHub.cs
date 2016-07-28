@@ -15,11 +15,11 @@ namespace Server.SignalR
             nodeHub = NodeHub.Instance;
         }
       
-        public void Initialise(string username)
+        public void Initialise(int userId)
         {
-            nodeHub.AddNode(Context.ConnectionId, username);
+            nodeHub.AddNode(Context.ConnectionId, userId);
             // Call the broadcastMessage method to update clients.
-            Clients.All.broadcastMessage(username);
+            //Clients.All.broadcastMessage(userId);
         }
 
         public override Task OnDisconnected(bool disconnect)

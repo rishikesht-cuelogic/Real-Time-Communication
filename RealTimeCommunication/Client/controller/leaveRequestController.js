@@ -1,12 +1,45 @@
-﻿hrms.controller('leaveRequestController', ['$scope', function ($scope) {
-    $scope.leaves = [
-                     {Name:'Nikhil Babar', StartDate: '27:06:2016', EndDate: '01:08:2016', Reason: 'Due to personal reason', Status: 'Pending' },
-                     { Name: 'Nikhil Babar', StartDate: '27:06:2016', EndDate: '01:08:2016', Reason: 'Due to personal reason', Status: 'Pending' },
-                     { Name: 'Nikhil Babar', StartDate: '27:06:2016', EndDate: '01:08:2016', Reason: 'Due to personal reason', Status: 'Pending' },
-                     { Name: 'Nikhil Babar', StartDate: '27:06:2016', EndDate: '01:08:2016', Reason: 'Due to personal reason', Status: 'Pending' }
-    ]
-    //setTimeout(function () {
-    //    alert("Timeout over");
-    //    hub.server.initialise('Inside done');
-    //}, 1000);
+﻿hrms.controller('leaveRequestController', ['$scope', '$http', function ($scope, $http) {
+    $scope.leaves = [];
+
+    function Initialize() {
+        $http({
+            method: 'GET',
+            url: 'http://localhost:62643/api/leave/getall',
+        }).then(function successCallback(response) {
+            $scope.leaves = response.data;
+        }, function errorCallback(response) {
+        });
+    }
+
+    Initialize();
+
+    $scope.approve = function (userid) {
+        $http({
+            method: 'POST',
+            url: 'http://localhost:62643/api/leave/action',
+            data: {UserId:userid,Status:'Approved'}
+        }).then(function successCallback(response) {
+            if (response.data)
+                alert("Approved");
+        }, function errorCallback(response) {
+        });
+    }
+
+    $scope.reject = function (userid) {
+        $http({
+            method: 'POST',
+            url: 'http://localhost:62643/api/leave/action',
+            data: { UserId: userid, Status: 'Rejected' }
+        }).then(function successCallback(response) {
+            if (response.data)
+                alert("Rejected");
+        }, function errorCallback(response) {
+        });
+    }
+
+
+    hub.client.broadcastMessage = function (data) {
+        alert('Leave request page:' + data);
+        console.log(data);
+    };
 }]);

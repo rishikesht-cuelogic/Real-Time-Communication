@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.SignalR;
+using Server.Models;
 using Server.SignalR;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,11 @@ namespace Server.Controllers
 {
     public class HomeController : Controller
     {
+        private HRMSContext db = null;
+        public HomeController()
+        {
+            db = new HRMSContext();
+        }
         public ActionResult Index()
         {
             var context = GlobalHost.ConnectionManager.GetHubContext<SignalRHub>();

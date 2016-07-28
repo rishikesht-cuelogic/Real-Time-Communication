@@ -72,10 +72,10 @@ D:\Rishikesh\RealTimeCommunication\RealTimeCommunication\Server\bin\Microsoft.Ow
 D:\Rishikesh\RealTimeCommunication\RealTimeCommunication\Server\bin\Microsoft.Owin.Security.Twitter.xml
 D:\Rishikesh\RealTimeCommunication\RealTimeCommunication\Server\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 D:\Rishikesh\RealTimeCommunication\RealTimeCommunication\Server\bin\System.Web.Http.Owin.xml
-D:\Rishikesh\RealTimeCommunication\RealTimeCommunication\Server\obj\Debug\Server.csprojResolveAssemblyReference.cache
 D:\Rishikesh\RealTimeCommunication\RealTimeCommunication\Server\obj\Debug\Server.dll
 D:\Rishikesh\RealTimeCommunication\RealTimeCommunication\Server\obj\Debug\Server.pdb
 D:\Rishikesh\RealTimeCommunication\RealTimeCommunication\Server\bin\Microsoft.AspNet.SignalR.Core.dll
 D:\Rishikesh\RealTimeCommunication\RealTimeCommunication\Server\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
 D:\Rishikesh\RealTimeCommunication\RealTimeCommunication\Server\bin\Microsoft.AspNet.SignalR.Core.xml
 D:\Rishikesh\RealTimeCommunication\RealTimeCommunication\Server\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+D:\Rishikesh\RealTimeCommunication\RealTimeCommunication\Server\obj\Debug\Server.csprojResolveAssemblyReference.cache
