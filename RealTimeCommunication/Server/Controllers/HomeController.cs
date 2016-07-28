@@ -19,10 +19,6 @@ namespace Server.Controllers
         }
         public ActionResult Index()
         {
-            var context = GlobalHost.ConnectionManager.GetHubContext<SignalRHub>();
-
-            context.Clients.All.broadcastMessage("This is dummy data");
-
             ViewBag.Title = "Home Page";
             return View();
         }

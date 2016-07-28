@@ -17,10 +17,7 @@
     <script src="js/angular-ui-router.min.js"></script>
     <script src="app.js"></script>
 
-    <!-----------------------------Controllers--------------------->
-    <script src="controller/leaveRequestController.js"></script>
-    <script src="controller/leavesController.js"></script>
-    <script src="controller/loginController.js"></script>
+  
 </head>
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -56,13 +53,22 @@
 <script type="text/javascript">
     $(function () {
         // Declare a proxy to reference the hub.
+        //hub = $.connection.signalRHub;
+        //// Create a function that the hub can call to broadcast messages.
+        ////hub.client.broadcastMessage = function (data) {
+        ////    alert('Inside Index page:'+data);
+        ////};
+        //$.connection.hub.url = 'http://localhost:62643/signalr';
+        //$.connection.hub.start().done(function () { });
+
         hub = $.connection.signalRHub;
-        // Create a function that the hub can call to broadcast messages.
-        hub.client.broadcastMessage = function (data) {
-            alert('Inside Index page:'+data);
-        };
-        $.connection.hub.url = 'http://localhost:62643/signalr';
-        $.connection.hub.start().done(function () { });
+        //$.connection.hub.url = 'http://localhost:62643/signalr';
+        //$.connection.hub.start().done(function () { });
     });
 
 </script>
+
+  <!-----------------------------Controllers--------------------->
+<script src="controller/leaveRequestController.js"></script>
+<script src="controller/leavesController.js"></script>
+<script src="controller/loginController.js"></script>

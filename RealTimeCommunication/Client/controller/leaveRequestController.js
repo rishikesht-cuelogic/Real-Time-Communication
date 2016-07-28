@@ -1,7 +1,7 @@
 ﻿hrms.controller('leaveRequestController', ['$scope', '$http', function ($scope, $http) {
     $scope.leaves = [];
 
-    function Initialize() {
+    function load() {
         $http({
             method: 'GET',
             url: 'http://localhost:62643/api/leave/getall',
@@ -11,7 +11,11 @@
         });
     }
 
-    Initialize();
+    load();
+
+    function reload() {
+        load();
+    }
 
     $scope.approve = function (userid) {
         $http({
@@ -37,9 +41,12 @@
         });
     }
 
-
-    hub.client.broadcastMessage = function (data) {
-        alert('Leave request page:' + data);
-        console.log(data);
+    hub.client.newLeaveRequest = function (data) {        
+        $scope.$apply(function () {
+            $scope.leaves.push(data);
+        });
     };
+    $.connection.hub.url = 'http://localhost:62643/signalr';
+    $.connection.hub.start().done(function () { });
+
 }]);

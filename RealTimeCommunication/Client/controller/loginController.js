@@ -6,7 +6,16 @@
     $scope.unauthorisedMessage='Invalid username and password';
     $scope.unauthorised=false;
 
-    //hub.server.initialise('Admin');
+    //var hub = $.connection.signalRHub;
+    //// Create a function that the hub can call to broadcast messages.
+    //hub.client.broadcastMessage = function (data) {
+    //    alert('Login:' + data);
+    //};
+    //$.connection.hub.url = 'http://localhost:62643/signalr';
+    //$.connection.hub.start().done(function () { });
+
+
+
     $scope.login = function () {
         
 
@@ -18,7 +27,7 @@
         }).then(function successCallback(response) {
             if (response.data.IsValid)
             {
-                hub.server.initialise(response.data.UserId);
+                //hub.server.initialise(response.data.UserId);
                 localStorage.setItem('UserId', response.data.UserId);
 
                 if (response.data.Role == "Manager")

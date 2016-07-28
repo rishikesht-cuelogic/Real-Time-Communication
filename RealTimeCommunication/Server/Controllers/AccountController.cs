@@ -1,4 +1,6 @@
-﻿using Server.Models;
+﻿using Microsoft.AspNet.SignalR;
+using Server.Models;
+using Server.SignalR;
 using System;
 using System.Collections.Generic;
 using System.Linq;

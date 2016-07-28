@@ -44,9 +44,12 @@
         });
     }
 
-    hub.client.broadcastMessage = function (data) {
-        alert('This leave page:' + data);
-        console.log(data);
+    
+    // Create a function that the hub can call to broadcast messages.
+    hub.client.leaveAction = function (data) {
+        alert(data);
     };
+    $.connection.hub.url = 'http://localhost:62643/signalr';
+    $.connection.hub.start().done(function () { });
 
 }]);
