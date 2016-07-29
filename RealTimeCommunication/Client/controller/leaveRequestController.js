@@ -17,11 +17,11 @@
         load();
     }
 
-    $scope.approve = function (userid) {
+    $scope.approve = function (leaveId) {
         $http({
             method: 'POST',
             url: 'http://localhost:62643/api/leave/action',
-            data: {UserId:userid,Status:'Approved'}
+            data: { LeaveId: leaveId, Status: 'Approved' }
         }).then(function successCallback(response) {
             if (response.data)
             {
@@ -34,11 +34,11 @@
         });
     }
 
-    $scope.reject = function (userid) {
+    $scope.reject = function (leaveId) {
         $http({
             method: 'POST',
             url: 'http://localhost:62643/api/leave/action',
-            data: { UserId: userid, Status: 'Rejected' }
+            data: { LeaveId: leaveId, Status: 'Rejected' }
         }).then(function successCallback(response) {
             if (response.data) {
                 reload();

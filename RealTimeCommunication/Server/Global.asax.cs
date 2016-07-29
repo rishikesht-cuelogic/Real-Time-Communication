@@ -21,10 +21,12 @@ namespace Server
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            
-            db.Database.CreateIfNotExists();
-            Seed();
 
+            if (!db.Database.Exists())
+            {
+                db.Database.Create();
+                Seed();
+            }
         }
         private void Seed()
         {

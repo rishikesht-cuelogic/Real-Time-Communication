@@ -47,7 +47,13 @@
     
     // Create a function that the hub can call to broadcast messages.
     hub.client.leaveAction = function (data) {
-        alert(data);
+        for (var i = 0; i < $scope.leaves.length; i++) {
+            if ($scope.leaves[i].LeaveId == data.LeaveId)
+            {
+                $scope.leaves[i].Status = data.Status;
+                $scope.$apply();
+            }                
+        }
     };
     $.connection.hub.url = 'http://localhost:62643/signalr';
     $.connection.hub.start().done(function () { });
