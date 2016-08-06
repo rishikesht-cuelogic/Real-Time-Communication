@@ -1,4 +1,4 @@
-﻿hrms.controller('leavesController', ['$scope', '$http', 'service', function ($scope, $http, service) {
+﻿hrms.controller('leavesController', ['$scope', 'service', function ($scope, service) {
 
     function load() {
         service.getLeaves().then(function (data) {
@@ -35,7 +35,8 @@
             }
         }
     };
-    $.connection.hub.url = 'http://localhost:62643/signalr';
+
+    $.connection.hub.url = service.rootUrl+'signalr';
     $.connection.hub.start().done(function () { });
     load();
 }]);

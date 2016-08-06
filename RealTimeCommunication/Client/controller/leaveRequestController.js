@@ -1,4 +1,4 @@
-﻿hrms.controller('leaveRequestController', ['$scope', '$http', 'service', function ($scope, $http, service) {
+﻿hrms.controller('leaveRequestController', ['$scope', 'service', function ($scope,  service) {
     $scope.leaves = [];
 
     function load() {
@@ -34,7 +34,8 @@
             $scope.leaves.push(data);
         });
     };
-    $.connection.hub.url = 'http://localhost:62643/signalr';
+
+    $.connection.hub.url = service.rootUrl+'signalr';
     $.connection.hub.start().done(function () { });
 
     load();

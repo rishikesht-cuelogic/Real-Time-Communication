@@ -1,5 +1,7 @@
 ﻿hrms.factory('service', ['$q', '$http', function ($q, $http) {
-    var baseUrl = 'http://localhost:62643/api/'
+    var baseUrl = 'http://localhost:62643/api/';
+    var rootUrl='http://localhost:62643/';
+
     function getLeaves() {
         var deferred = $q.defer();
         $http({
@@ -11,6 +13,7 @@
         });
         return deferred.promise;    
     }
+
     function getAllLeaves() {
         var deferred = $q.defer();
         $http({
@@ -59,7 +62,9 @@
         getLeaves: getLeaves,
         getAllLeaves: getAllLeaves,
         leaveAction: leaveAction,
-        leaveRequest: leaveRequest
+        leaveRequest: leaveRequest,
+        rootUrl:rootUrl
     };
+
     return Service;
 }]);

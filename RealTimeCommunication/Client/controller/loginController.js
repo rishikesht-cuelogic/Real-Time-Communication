@@ -5,21 +5,7 @@
     };
     $scope.unauthorisedMessage='Invalid username and password';
     $scope.unauthorised=false;
-
-    //var hub = $.connection.signalRHub;
-    //// Create a function that the hub can call to broadcast messages.
-    //hub.client.broadcastMessage = function (data) {
-    //    alert('Login:' + data);
-    //};
-    //$.connection.hub.url = 'http://localhost:62643/signalr';
-    //$.connection.hub.start().done(function () { });
-
-
-
     $scope.login = function () {
-        
-
-
         $http({
             method: 'POST',
             url: 'http://localhost:62643/api/Account/login',
@@ -39,8 +25,6 @@
                 $scope.unauthorised = true;
 
         }, function errorCallback(response) {
-            // called asynchronously if an error occurs
-            // or server returns response with an error status.
         });
     }
     
