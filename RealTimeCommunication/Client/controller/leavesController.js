@@ -1,5 +1,7 @@
-﻿hrms.controller('leavesController', ['$scope', 'service', function ($scope, service) {
-
+﻿hrms.controller('leavesController', ['$scope', 'service', 'backendHubProxy', function ($scope, service, backendHubProxy) {
+    var performanceDataHub = backendHubProxy(backendHubProxy.defaultServer, 'signalRHub');
+    
+    console.log(backendHubProxy.defaultServer);
     function load() {
         service.getLeaves().then(function (data) {
             $scope.leaves = data;
@@ -21,22 +23,22 @@
         service.leaveRequest(data).then(function (data) {
             if (data) {
                 alert("Successfully sent request");
+                //$scope.leaveRequest = {};
                 reload();
             }
         });
     }
 
-    // Create a function that the hub can call to broadcast messages.
-    hub.client.leaveAction = function (data) {
+    performanceDataHub.on('leaveAction', function (data) {
+
         for (var i = 0; i < $scope.leaves.length; i++) {
             if ($scope.leaves[i].LeaveId == data.LeaveId) {
                 $scope.leaves[i].Status = data.Status;
-                $scope.$apply();
+
             }
         }
-    };
 
-    $.connection.hub.url = service.rootUrl+'signalr';
-    $.connection.hub.start().done(function () { });
+    });
+
     load();
 }]);

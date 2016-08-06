@@ -70,6 +70,7 @@
     <Content Include="controller\leavesController.js" />
     <Content Include="controller\leaveRequestController.js" />
     <Content Include="controller\loginController.js" />
+    <Content Include="factory\backendHubProxy.js" />
     <Content Include="factory\services.js" />
     <Content Include="html\leaves.html" />
     <Content Include="html\leaveRequest.html" />

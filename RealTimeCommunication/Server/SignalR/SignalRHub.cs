@@ -19,7 +19,7 @@ namespace Server.SignalR
         {
             nodeHub.AddNode(Context.ConnectionId, userId);
             // Call the broadcastMessage method to update clients.
-            //Clients.All.broadcastMessage(userId);
+            Clients.All.broadcastPerformance(userId);
         }
 
         public override Task OnDisconnected(bool disconnect)

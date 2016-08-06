@@ -1,4 +1,5 @@
-﻿hrms.controller('leaveRequestController', ['$scope', 'service', function ($scope,  service) {
+﻿hrms.controller('leaveRequestController', ['$scope', 'service', 'backendHubProxy', function ($scope, service, backendHubProxy) {
+    var performanceDataHub = backendHubProxy(backendHubProxy.defaultServer, 'signalRHub');
     $scope.leaves = [];
 
     function load() {
@@ -29,14 +30,9 @@
         });
     }
 
-    hub.client.newLeaveRequest = function (data) {        
-        $scope.$apply(function () {
+    performanceDataHub.on('newLeaveRequest', function (data) {        
             $scope.leaves.push(data);
-        });
-    };
-
-    $.connection.hub.url = service.rootUrl+'signalr';
-    $.connection.hub.start().done(function () { });
+    });
 
     load();
 }]);

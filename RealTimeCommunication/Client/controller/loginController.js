@@ -1,4 +1,6 @@
-﻿hrms.controller('loginController', ['$scope', '$state', '$http', function ($scope, $state, $http) {
+﻿hrms.controller('loginController', ['$scope', '$state', '$http', 'backendHubProxy', function ($scope, $state, $http, backendHubProxy) {
+    var performanceDataHub = backendHubProxy(backendHubProxy.defaultServer, 'signalRHub');
+    
     $scope.user = {
         username: '',
         password:''
@@ -13,7 +15,7 @@
         }).then(function successCallback(response) {
             if (response.data.IsValid)
             {
-                //hub.server.initialise(response.data.UserId);
+                performanceDataHub.invoke('initialise', response.data.UserId);
                 localStorage.setItem('UserId', response.data.UserId);
 
                 if (response.data.Role == "Manager")

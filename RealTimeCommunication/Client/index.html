@@ -45,7 +45,9 @@
 
 <script type="text/javascript">
     $(function () {
-        hub = $.connection.signalRHub;
+        //hub = $.connection.signalRHub;
+        //$.connection.hub.url = 'http://localhost:62643/signalr';
+        //$.connection.hub.start().done(function () { });
     });
 
 </script>
@@ -55,3 +57,4 @@
 <script src="controller/leavesController.js"></script>
 <script src="controller/loginController.js"></script>
 <script src="factory/services.js"></script>
+<script src="factory/backendHubProxy.js"></script>

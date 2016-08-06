@@ -18,4 +18,4 @@ hrms.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $
      })
 }]);
 
-
+hrms.value('backendServerUrl', 'http://localhost:62643/signalr');
