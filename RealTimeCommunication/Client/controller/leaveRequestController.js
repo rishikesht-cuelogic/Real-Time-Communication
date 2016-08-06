@@ -1,51 +1,31 @@
-﻿hrms.controller('leaveRequestController', ['$scope', '$http', function ($scope, $http) {
+﻿hrms.controller('leaveRequestController', ['$scope', '$http', 'service', function ($scope, $http, service) {
     $scope.leaves = [];
 
     function load() {
-        $http({
-            method: 'GET',
-            url: 'http://localhost:62643/api/leave/getall',
-        }).then(function successCallback(response) {
-            $scope.leaves = response.data;
-        }, function errorCallback(response) {
+        service.getAllLeaves().then(function (data) {
+            $scope.leaves = data;
         });
     }
-
-    load();
 
     function reload() {
         load();
     }
 
     $scope.approve = function (leaveId) {
-        $http({
-            method: 'POST',
-            url: 'http://localhost:62643/api/leave/action',
-            data: { LeaveId: leaveId, Status: 'Approved' }
-        }).then(function successCallback(response) {
-            if (response.data)
-            {
+        service.leaveAction(leaveId, 'Approved').then(function (data) {
+            if (data) {
                 alert("Approved");
                 reload();
             }
-                
-
-        }, function errorCallback(response) {
         });
     }
 
     $scope.reject = function (leaveId) {
-        $http({
-            method: 'POST',
-            url: 'http://localhost:62643/api/leave/action',
-            data: { LeaveId: leaveId, Status: 'Rejected' }
-        }).then(function successCallback(response) {
-            if (response.data) {
-                reload();
+        service.leaveAction(leaveId, "Rejected").then(function (data) {
+            if (data) {
                 alert("Rejected");
+                reload();
             }
-                
-        }, function errorCallback(response) {
         });
     }
 
@@ -57,4 +37,5 @@
     $.connection.hub.url = 'http://localhost:62643/signalr';
     $.connection.hub.start().done(function () { });
 
+    load();
 }]);

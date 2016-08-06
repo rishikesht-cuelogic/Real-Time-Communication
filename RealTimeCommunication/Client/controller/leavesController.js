@@ -1,23 +1,10 @@
-﻿hrms.controller('leavesController', ['$scope','$http', function ($scope,$http) {
-
-    $scope.leaves = [
-                        { StartDate: '27:06:2016', EndDate: '01:08:2016', Reason: 'Due to personal reason', Status: 'Pending' },
-                        { StartDate: '27:06:2016', EndDate: '01:08:2016', Reason: 'Due to personal reason', Status: 'Pending' },
-                        { StartDate: '27:06:2016', EndDate: '01:08:2016', Reason: 'Due to personal reason', Status: 'Pending' },
-                        { StartDate: '27:06:2016', EndDate: '01:08:2016', Reason: 'Due to personal reason', Status: 'Pending' }
-    ]
+﻿hrms.controller('leavesController', ['$scope', '$http', 'service', function ($scope, $http, service) {
 
     function load() {
-        $http({
-            method: 'GET',
-            url: 'http://localhost:62643/api/leave/get?userid='+localStorage.getItem('UserId'),
-        }).then(function successCallback(response) {
-            $scope.leaves = response.data;
-        }, function errorCallback(response) {
+        service.getLeaves().then(function (data) {
+            $scope.leaves = data;
         });
     }
-
-    load();
 
     function reload() {
         load();
@@ -30,32 +17,25 @@
     }
 
     $scope.leaveRequest = function () {
-        $http({
-            method: 'POST',
-            url: 'http://localhost:62643/api/leave/LeaveRequest',
-            data: { UserId: localStorage.getItem('UserId'), StartDate: $scope.leaveRequest.startDate, EndDate: $scope.leaveRequest.endDate, Reason: $scope.leaveRequest.reason }
-        }).then(function successCallback(response) {
-            if (response.data) {
+        var data = { UserId: localStorage.getItem('UserId'), StartDate: $scope.leaveRequest.startDate, EndDate: $scope.leaveRequest.endDate, Reason: $scope.leaveRequest.reason };
+        service.leaveRequest(data).then(function (data) {
+            if (data) {
                 alert("Successfully sent request");
                 reload();
             }
-                
-        }, function errorCallback(response) {
         });
     }
 
-    
     // Create a function that the hub can call to broadcast messages.
     hub.client.leaveAction = function (data) {
         for (var i = 0; i < $scope.leaves.length; i++) {
-            if ($scope.leaves[i].LeaveId == data.LeaveId)
-            {
+            if ($scope.leaves[i].LeaveId == data.LeaveId) {
                 $scope.leaves[i].Status = data.Status;
                 $scope.$apply();
-            }                
+            }
         }
     };
     $.connection.hub.url = 'http://localhost:62643/signalr';
     $.connection.hub.start().done(function () { });
-
+    load();
 }]);
