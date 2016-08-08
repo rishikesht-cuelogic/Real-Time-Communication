@@ -7,7 +7,11 @@ The objective is How to integrate ASP.NET SignalR with RESTful web services and 
 ASP.NET SignalR is a new library for ASP.NET developers that makes developing real-time web functionality easy. SignalR allows bi-directional communication between server and client. Servers can now push content to connected clients instantly as it becomes available. SignalR supports Web Sockets, and falls back to other compatible techniques for older browsers. SignalR includes APIs for connection management (for instance, connect and disconnect events), grouping connections, and authorization.
 
 ##Application
-This is HRMS application. Here, employeer can request for leave with reason. This request notify to manager immediately if Manager is online. Manager can either approve or reject the leave request. As soon as manager takes any action on leave request, corresponding leave status change at employeer side immediately.
+1. Chat application
+2. Notifications
+3. Dashboard
+4. Auto load content updated at backend.
+
 
 ##Project Structure
 In this solution, there are 2 applications.
