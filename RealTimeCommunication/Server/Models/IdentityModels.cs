@@ -34,6 +34,7 @@ namespace Server.Models
         public string Status { get; set; }
         public string Reason { get; set; }
         public virtual User User { get; set; }
+        public DateTime CreatedDate { get; set; }
     }
 
 

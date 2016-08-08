@@ -31,7 +31,7 @@
     }
 
     hub.on('newLeaveRequest', function (data) {        
-            $scope.leaves.push(data);
+        $scope.leaves.splice(0, 0, data);
     });
 
     load();
