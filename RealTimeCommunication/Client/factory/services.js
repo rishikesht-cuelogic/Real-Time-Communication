@@ -58,11 +58,27 @@
         return deferred.promise;
     }
 
+    function login(data) {
+        var deferred = $q.defer();
+        $http({
+            method: 'POST',
+            url: baseUrl + 'Account/login',
+            data: data
+        }).then(function successCallback(response) {
+            if (response.data) {
+                deferred.resolve(response.data);
+            }
+        }, function errorCallback(response) {
+        });
+        return deferred.promise;
+    }
+
     var Service = {
         getLeaves: getLeaves,
         getAllLeaves: getAllLeaves,
         leaveAction: leaveAction,
         leaveRequest: leaveRequest,
+        login:login,
         rootUrl:rootUrl
     };
 

@@ -1,5 +1,5 @@
 ﻿hrms.controller('leaveRequestController', ['$scope', 'service', 'backendHubProxy', function ($scope, service, backendHubProxy) {
-    var performanceDataHub = backendHubProxy(backendHubProxy.defaultServer, 'signalRHub');
+    var hub = backendHubProxy();
     $scope.leaves = [];
 
     function load() {
@@ -30,7 +30,7 @@
         });
     }
 
-    performanceDataHub.on('newLeaveRequest', function (data) {        
+    hub.on('newLeaveRequest', function (data) {        
             $scope.leaves.push(data);
     });
 

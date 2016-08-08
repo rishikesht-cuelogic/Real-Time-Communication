@@ -1,11 +1,11 @@
 ﻿'use strict';
 
-hrms.factory('backendHubProxy', ['$rootScope', 'backendServerUrl',
-  function ($rootScope, backendServerUrl) {
+hrms.factory('backendHubProxy', ['$rootScope', 'backendServerUrl','backendHubName',
+function ($rootScope, backendServerUrl,backendHubName) {
 
-      function backendFactory(serverUrl, hubName) {
+      function backendFactory() {
           var connection = $.hubConnection(backendServerUrl);
-          var proxy = connection.createHubProxy(hubName);
+          var proxy = connection.createHubProxy(backendHubName);
         
           proxy.on('', function (result) {});//Dummy link
 
