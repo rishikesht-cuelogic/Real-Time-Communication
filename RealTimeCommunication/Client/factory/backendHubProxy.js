@@ -7,7 +7,7 @@ function ($rootScope, backendServerUrl,backendHubName) {
           var connection = $.hubConnection(backendServerUrl);
           var proxy = connection.createHubProxy(backendHubName);
         
-          proxy.on('', function (result) {});//Dummy link
+          proxy.on('', function (result) { });//Dummy link because If you don't register any event handlers before calling the start method, you will be able to invoke methods on the Hub, but the Hub's OnConnected method won't be called and no client methods will be invoked from the server
 
           connection.start().done(function () { });
 
